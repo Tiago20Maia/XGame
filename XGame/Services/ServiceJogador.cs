@@ -13,6 +13,10 @@ namespace XGame.Services
         {
             _repositoryJogador = repositoryJogador;
         }
+        public ServiceJogador()
+        {
+            
+        }
 
         public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)
         {
@@ -20,14 +24,13 @@ namespace XGame.Services
 
             return new AdicionarJogadorResponse() { Id = id, Message = "Operação realizada com sucesso!" };
         }
-
         public AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request)
         {
             if (request == null)
             {
                 throw new Exception("AutenticarJogadorRequest é obrigatório.");
             }
-            
+
             if (string.IsNullOrEmpty(request.Email))
             {
                 throw new Exception("Informe o email.");
@@ -46,7 +49,6 @@ namespace XGame.Services
 
             return response;
         }
-
         private bool isEmail(string email)
         {
             return false;
