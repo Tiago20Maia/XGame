@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XGame.Arguments.Jogador;
 using XGame.Interfaces.Services;
+using XGame.ValueObject;
 
 namespace XGame.Services
 {
@@ -26,7 +23,33 @@ namespace XGame.Services
 
         public AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request)
         {
-            throw new NotImplementedException();
+            if (request == null)
+            {
+                throw new Exception("AutenticarJogadorRequest é obrigatório.");
+            }
+            
+            if (string.IsNullOrEmpty(request.Email))
+            {
+                throw new Exception("Informe o email.");
+            }
+
+            if (string.IsNullOrEmpty(request.Senha))
+            {
+                throw new Exception("Informw a senha.");
+            }
+
+            if (isEmail(request.Email))
+            {
+                throw new Exception("Informe um email.");
+            }
+            var response = _repositoryJogador.AutenticarJogador(request);
+
+            return response;
+        }
+
+        private bool isEmail(string email)
+        {
+            return false;
         }
     }
 }
