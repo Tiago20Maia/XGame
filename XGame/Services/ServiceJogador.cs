@@ -1,11 +1,15 @@
-﻿using System;
+﻿using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
+using System;
 using XGame.Arguments.Jogador;
+using XGame.Entities;
 using XGame.Interfaces.Services;
+using XGame.Resources;
 using XGame.ValueObject;
 
 namespace XGame.Services
 {
-    public class ServiceJogador : IServiceJogador
+    public class ServiceJogador : Notifiable, IServiceJogador
     {
         private readonly IRepositoryJogador _repositoryJogador;
 
@@ -28,30 +32,22 @@ namespace XGame.Services
         {
             if (request == null)
             {
-                throw new Exception("AutenticarJogadorRequest é obrigatório.");
+                AddNotification("AutenticarJogadorRequest", Message.X0_E_OBRIGATORIO.ToFormat("AutenticarJogadorRequest"));
             }
 
-            if (string.IsNullOrEmpty(request.Email))
+            var email = new Email(request.Email);
+            var jogador = new Jogador(email, request.Senha);
+
+            AddNotifications(jogador, email);
+
+            if (jogador.IsInvalid())
             {
-                throw new Exception("Informe o email.");
+                return null;
             }
 
-            if (string.IsNullOrEmpty(request.Senha))
-            {
-                throw new Exception("Informw a senha.");
-            }
-
-            if (isEmail(request.Email))
-            {
-                throw new Exception("Informe um email.");
-            }
-            var response = _repositoryJogador.AutenticarJogador(request);
+            var response = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
 
             return response;
-        }
-        private bool isEmail(string email)
-        {
-            return false;
         }
     }
 }

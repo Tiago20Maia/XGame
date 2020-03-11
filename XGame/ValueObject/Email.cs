@@ -1,13 +1,21 @@
-﻿using System;
+﻿using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XGame.Resources;
 
 namespace XGame.ValueObject
 {
-    public class Email
+    public class Email : Notifiable
     {
-        public string Endereco { get; set; }
+        public Email(string endereco)
+        {
+            Endereco = endereco;
+            new AddNotifications<Email>(this).IfNotEmail(x => x.Endereco, Message.X0_INVALIDO.ToFormat("E-mail"));
+        }
+        public string Endereco { get; private set; }
     }
 }
