@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XGame.Enum
+namespace XGame.Interfaces.Arguments
 {
-    public enum EnumSituacaoJogador
+    interface IResponse
     {
-        EmAnalise = 0,
-        Ativo = 1,
-        Bloqueado = 2
     }
 }

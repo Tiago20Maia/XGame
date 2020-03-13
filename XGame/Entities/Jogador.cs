@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XGame.Enum;
+using XGame.Extensions;
 using XGame.ValueObject;
 
 namespace XGame.Entities
@@ -20,11 +21,29 @@ namespace XGame.Entities
            
         }
 
-        public Guid Id { get; set; }
-        public Nome Nome { get; set; }
-        public Email Email { get; set; }
-        public string Senha { get; set; }
-        public EnumSituacaoJogador status { get; set; }
+        public Jogador(Nome nome, Email email, string senha)
+        {
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+            Id = Guid.NewGuid();
+            status = EnumSituacaoJogador.EmAnalise;
+
+            new AddNotifications<Jogador>(this)
+                .IfNullOrInvalidLength(x => x.Senha, 6, 32);
+            if (IsValid())
+            {
+                Senha = Senha.ConvertToMD5();
+            }           
+
+            AddNotifications(nome, email);
+        }
+
+        public Guid Id { get; private set; }
+        public Nome Nome { get; private set; }
+        public Email Email { get; private set; }
+        public string Senha { get; private set; }
+        public EnumSituacaoJogador status { get; private set; }
 
     }
 }

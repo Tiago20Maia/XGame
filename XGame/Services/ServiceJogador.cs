@@ -24,10 +24,20 @@ namespace XGame.Services
 
         public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)
         {
-            Guid id = _repositoryJogador.AdicionarJogador(request);
+            var nome = new Nome(request.PrimeiroNome, request.UltimoNome);
+            var email = new Email(request.Email);
+            var jogador = new Jogador(nome, email, request.Senha);
+
+            if (this.IsInvalid())
+            {
+                return null;
+            }
+
+            Guid id = _repositoryJogador.AdicionarJogador(jogador);
 
             return new AdicionarJogadorResponse() { Id = id, Message = "Operação realizada com sucesso!" };
         }
+
         public AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request)
         {
             if (request == null)

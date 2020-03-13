@@ -10,5 +10,7 @@ namespace XGame.Interfaces.Services
     public interface IServicePlataforma
     {
         AdicionarPlataformaResponse AdicionarJogador(AdicionarPlataformaRequest request);
+
+        AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request);
     }
 }

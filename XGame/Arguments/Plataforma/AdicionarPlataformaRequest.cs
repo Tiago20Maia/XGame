@@ -4,7 +4,7 @@ namespace XGame.Arguments.Jogador
 {
     public class AdicionarPlataformaRequest
     {
-        public Nome Nome { get; set; }
+        public string Nome { get; set; }
        
     }
 }
