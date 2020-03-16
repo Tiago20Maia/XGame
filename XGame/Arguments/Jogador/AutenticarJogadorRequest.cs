@@ -1,6 +1,4 @@
-﻿using XGame.ValueObject;
-
-namespace XGame.Arguments.Jogador
+﻿namespace XGame.Arguments.Jogador
 {
     public class AutenticarJogadorRequest
     {

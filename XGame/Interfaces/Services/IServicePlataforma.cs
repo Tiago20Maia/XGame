@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XGame.Arguments.Jogador;
+﻿using XGame.Arguments.Jogador;
 
 namespace XGame.Interfaces.Services
 {
     public interface IServicePlataforma
     {
-        AdicionarPlataformaResponse AdicionarJogador(AdicionarPlataformaRequest request);
+        AdicionarPlataformaResponse AdicionarPlataforma(AdicionarPlataformaRequest request);
 
-        AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request);
+        AutenticarJogadorResponse AutenticarPlataforma(AutenticarJogadorRequest request);
     }
 }

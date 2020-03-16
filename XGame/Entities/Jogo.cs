@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace XGame.Entities
 {
@@ -15,6 +11,5 @@ namespace XGame.Entities
         public string Distribuidora { get; set; }
         public string Genero { get; set; }
         public string Site { get; set; }
-
     }
 }

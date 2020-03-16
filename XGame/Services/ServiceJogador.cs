@@ -19,6 +19,7 @@ namespace XGame.Services
         {
             _repositoryJogador = repositoryJogador;
         }
+
         public ServiceJogador()
         {
             

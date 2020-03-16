@@ -1,9 +1,5 @@
 ﻿using prmToolkit.NotificationPattern;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XGame.Enum;
 using XGame.Extensions;
 using XGame.ValueObject;
@@ -16,7 +12,6 @@ namespace XGame.Entities
         {
             Email = email;
             Senha = senha;
-
             new AddNotifications<Jogador>(this).IfNullOrEmptyOrInvalidLength(x => x.Senha, 6, 32, "A senha deve ter entre 6 a 32 caracteres");
 
         }

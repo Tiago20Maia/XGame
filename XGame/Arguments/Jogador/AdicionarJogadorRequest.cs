@@ -1,8 +1,9 @@
-﻿using XGame.ValueObject;
+﻿using XGame.Interfaces.Arguments;
+using XGame.ValueObject;
 
 namespace XGame.Arguments.Jogador
 {
-    public class AdicionarJogadorRequest
+    public class AdicionarJogadorRequest : IRequest
     {
         public string Email { get; set; }
         public string Senha { get; set; }
