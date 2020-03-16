@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using XGame.Arguments.Jogador;
 
 namespace XGame.Interfaces.Services
@@ -11,5 +7,7 @@ namespace XGame.Interfaces.Services
     {
         AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request);
         AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request);
+        AlterarJogadorResponse AlterarJogador(AlterarJogadorRequest request);
+        IEnumerable<JogadorResponse> ListarJogador();
     }
 }

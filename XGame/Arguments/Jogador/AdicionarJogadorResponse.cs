@@ -1,10 +1,20 @@
 ﻿using System;
+using XGame.Interfaces.Arguments;
 
 namespace XGame.Arguments.Jogador
 {
-    public class AdicionarJogadorResponse
+    public class AdicionarJogadorResponse : IResponse
     {
         public Guid Id { get; set; }
         public string Message { get; set; }
+
+        public static explicit operator AdicionarJogadorResponse(Entities.Jogador entidade)
+        {
+            return new AdicionarJogadorResponse()
+            {
+                Id = entidade.Id,
+                Message = "teste adionar"//XGame.Domain.Resources.Message
+            };
+        }
     }
 }

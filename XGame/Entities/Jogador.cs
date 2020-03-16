@@ -18,23 +18,22 @@ namespace XGame.Entities
             Senha = senha;
 
             new AddNotifications<Jogador>(this).IfNullOrEmptyOrInvalidLength(x => x.Senha, 6, 32, "A senha deve ter entre 6 a 32 caracteres");
-           
-        }
 
+        }
         public Jogador(Nome nome, Email email, string senha)
         {
             Nome = nome;
             Email = email;
             Senha = senha;
             Id = Guid.NewGuid();
-            status = EnumSituacaoJogador.EmAnalise;
+            Status = EnumSituacaoJogador.EmAnalise;
 
             new AddNotifications<Jogador>(this)
                 .IfNullOrInvalidLength(x => x.Senha, 6, 32);
             if (IsValid())
             {
                 Senha = Senha.ConvertToMD5();
-            }           
+            }
 
             AddNotifications(nome, email);
         }
@@ -43,7 +42,12 @@ namespace XGame.Entities
         public Nome Nome { get; private set; }
         public Email Email { get; private set; }
         public string Senha { get; private set; }
-        public EnumSituacaoJogador status { get; private set; }
+        public EnumSituacaoJogador Status { get; private set; }
+
+        public override string ToString()
+        {
+            return this.Nome.PrimeiroNome + " " + this.Nome.UltimoNome;
+        }
 
     }
 }

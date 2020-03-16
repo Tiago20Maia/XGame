@@ -1,6 +1,8 @@
 ﻿using prmToolkit.NotificationPattern;
 using prmToolkit.NotificationPattern.Extensions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using XGame.Arguments.Jogador;
 using XGame.Entities;
 using XGame.Interfaces.Services;
@@ -26,16 +28,16 @@ namespace XGame.Services
         {
             var nome = new Nome(request.PrimeiroNome, request.UltimoNome);
             var email = new Email(request.Email);
-            var jogador = new Jogador(nome, email, request.Senha);
+            Jogador jogador = new Jogador(nome, email, request.Senha);
 
             if (this.IsInvalid())
             {
                 return null;
             }
 
-            Guid id = _repositoryJogador.AdicionarJogador(jogador);
+            jogador= _repositoryJogador.AdicionarJogador(jogador);
 
-            return new AdicionarJogadorResponse() { Id = id, Message = "Operação realizada com sucesso!" };
+            return (AdicionarJogadorResponse)jogador;
         }
 
         public AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request)
@@ -55,9 +57,22 @@ namespace XGame.Services
                 return null;
             }
 
-            var response = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
+            //jogador = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
 
-            return response;
+            //AutenticarJogadorResponse response = new AutenticarJogadorResponse();
+            
+            return (AutenticarJogadorResponse) jogador;
         }
+
+        public AlterarJogadorResponse AlterarJogador(AlterarJogadorRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<JogadorResponse> ListarJogador()
+        {
+            return _repositoryJogador.ListarJogador().ToList().Select(jogador => (JogadorResponse)jogador).ToList();
+        }
+
     }
 }
