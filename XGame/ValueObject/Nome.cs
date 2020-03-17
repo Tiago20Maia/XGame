@@ -1,9 +1,6 @@
 ﻿using prmToolkit.NotificationPattern;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using prmToolkit.NotificationPattern.Extensions;
+using XGame.Resources;
 
 namespace XGame.ValueObject
 {
@@ -16,8 +13,8 @@ namespace XGame.ValueObject
             UltimoNome = ultimoNome;
 
             new AddNotifications<Nome>(this)
-                .IfNullOrEmptyOrInvalidLength(x => x.PrimeiroNome, 3, 50)
-                .IfNullOrEmptyOrInvalidLength(x => x.UltimoNome, 3, 50);
+                .IfNullOrEmptyOrInvalidLength(x => x.PrimeiroNome, 3, 50, Message.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_X2_CARACTERES.ToFormat("Primeiro nome", "3", "50"))
+                .IfNullOrEmptyOrInvalidLength(x => x.UltimoNome, 3, 50, Message.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_X2_CARACTERES.ToFormat("Ultimo nome", "3", "50"));
         }
 
         public string PrimeiroNome { get; private set; }

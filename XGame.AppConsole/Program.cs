@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using XGame.Arguments.Jogador;
 using XGame.Services;
 
 namespace XGame.AppConsole

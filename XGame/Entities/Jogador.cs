@@ -1,7 +1,9 @@
 ﻿using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
 using System;
 using XGame.Enum;
 using XGame.Extensions;
+using XGame.Resources;
 using XGame.ValueObject;
 
 namespace XGame.Entities
@@ -12,8 +14,8 @@ namespace XGame.Entities
         {
             Email = email;
             Senha = senha;
-            new AddNotifications<Jogador>(this).IfNullOrEmptyOrInvalidLength(x => x.Senha, 6, 32, "A senha deve ter entre 6 a 32 caracteres");
-
+            new AddNotifications<Jogador>(this)
+                .IfNullOrEmptyOrInvalidLength(x => x.Senha, 6, 32, "A senha deve ter entre 6 a 32 caracteres");
         }
         public Jogador(Nome nome, Email email, string senha)
         {
@@ -24,7 +26,7 @@ namespace XGame.Entities
             Status = EnumSituacaoJogador.EmAnalise;
 
             new AddNotifications<Jogador>(this)
-                .IfNullOrInvalidLength(x => x.Senha, 6, 32);
+                .IfNullOrInvalidLength(x => x.Senha, 6, 32, Message.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_X2_CARACTERES.ToFormat("Senha", "6", "32"));           
             if (IsValid())
             {
                 Senha = Senha.ConvertToMD5();

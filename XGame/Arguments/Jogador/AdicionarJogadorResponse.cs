@@ -13,7 +13,7 @@ namespace XGame.Arguments.Jogador
             return new AdicionarJogadorResponse()
             {
                 Id = entidade.Id,
-                Message = "teste adionar"//XGame.Domain.Resources.Message
+                Message = XGame.Resources.Message.OPERACAO_REALIZADA_COM_SUCESSO
             };
         }
     }

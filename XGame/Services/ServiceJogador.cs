@@ -15,20 +15,21 @@ namespace XGame.Services
     {
         private readonly IRepositoryJogador _repositoryJogador;
 
+        public ServiceJogador()
+        {
+
+        }
+
         public ServiceJogador(IRepositoryJogador repositoryJogador)
         {
             _repositoryJogador = repositoryJogador;
-        }
-
-        public ServiceJogador()
-        {
-            
         }
 
         public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)
         {
             var nome = new Nome(request.PrimeiroNome, request.UltimoNome);
             var email = new Email(request.Email);
+
             Jogador jogador = new Jogador(nome, email, request.Senha);
 
             if (this.IsInvalid())
@@ -36,7 +37,7 @@ namespace XGame.Services
                 return null;
             }
 
-            jogador= _repositoryJogador.AdicionarJogador(jogador);
+            jogador = _repositoryJogador.AdicionarJogador(jogador);
 
             return (AdicionarJogadorResponse)jogador;
         }
@@ -61,8 +62,8 @@ namespace XGame.Services
             //jogador = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
 
             //AutenticarJogadorResponse response = new AutenticarJogadorResponse();
-            
-            return (AutenticarJogadorResponse) jogador;
+
+            return (AutenticarJogadorResponse)jogador;
         }
 
         public AlterarJogadorResponse AlterarJogador(AlterarJogadorRequest request)
