@@ -121,7 +121,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202003181717544_CriandoBanco.cs" />
+    <Compile Include="Migrations\202003181717544_CriandoBanco.designer.cs">
+      <DependentUpon>202003181717544_CriandoBanco.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistence\Map\MapPlataforma.cs" />
     <Compile Include="Persistence\Map\MapJogador.cs" />
     <Compile Include="Persistence\XGameContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,6 +143,11 @@
       <Project>{F8BA36A7-F66D-4260-AD82-6A4D0C4190DE}</Project>
       <Name>XGame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003181717544_CriandoBanco.resx">
+      <DependentUpon>202003181717544_CriandoBanco.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
